@@ -6,18 +6,21 @@
         <title>Posts</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
         <h1 class="title">
             Hello This is Laraposts;
         </h1>
-
         <div class="content">
             <div>
             @foreach ($posts as $post)
               <h3>{{ $post->title }}</h3>
               <p>{{ $post->body }}</p>
             @endforeach
+        </div>
+        <div class="paginate">
+            {{ $posts->links() }}
         </div>
     </body>
 </html>
