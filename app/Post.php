@@ -16,6 +16,6 @@ class Post extends Model
     
     public function getPaginate()
     {
-        return $this->paginate(1);
+        return $this->paginate(self::PAGINATE_COUNT_GET_POSTS);
     }
 }
