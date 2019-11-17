@@ -9,7 +9,7 @@
 
 ## 初期設定
 ```
-$ git clone https://github.com/accaxx/laracal
+$ git clone https://github.com/accaxx/laravel_caliculam
 $ cp .env.example .env
 $ php artisan key:generate
 $ composer install
