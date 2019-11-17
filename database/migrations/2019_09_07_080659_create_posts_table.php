@@ -15,8 +15,14 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->string('title', 255)->comment('タイトル');
+            $table->text('body')->comment('本文');
+            $table->datetime('created_at')->comment('作成日時')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('updated_at')->comment('更新日時')->default(DB::raw('CURRENT_TIMESTAMP'));;
+            $table->datetime('deleted_at')->nullable()->comment('削除日時');
+            $table->index(['updated_at']);
         });
+        DB::statement("ALTER TABLE posts COMMENT '投稿'");
     }
 
     /**
