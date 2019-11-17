@@ -21,5 +21,6 @@ $ npm run dev
 ```
 $ vi .env // DB周りのデータ書き換え
 $ php artisan migrate
+$ php artisan db:seed --class=PostsTableSeeder
 $ php artisan serve
 ```
