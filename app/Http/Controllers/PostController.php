@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreatePost as CreatePostRequest;
 use App\Post as PostModel;
 
 class PostController extends Controller
@@ -46,23 +46,14 @@ class PostController extends Controller
     /**
      * post作成する
      * 
-     * @FIXME Add Validate For Request
      * @param Request $request
      * @return Reposnse created view
      */
-    public function postCreate(Request $request)
+    public function postCreate(CreatePostRequest $request)
     {
-        if (!isset($request['post'])) {
-            throw new \Exception('無効なリクエストです');
-        }
+        $input_post = $request['post'];
+        $this->post_model->create($input_post);
 
-        try {
-            $input_post = $request['post'];
-            $this->post_model->create($input_post);
-
-            return redirect()->action('PostController@index');
-        } catch (Exception $e) {
-            dd($e);
-        }
+        return redirect()->action('PostController@index');
     }
 }

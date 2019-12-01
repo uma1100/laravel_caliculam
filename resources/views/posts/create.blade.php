@@ -15,13 +15,15 @@
         <div class="content">
             <form action="/posts/create" method="POST">
                 {{ csrf_field() }}
-                <div class='content_title'>
+                <div class='content__title'>
                     <h2>タイトル</h2>
                     <input type='text' name='post[title]'>
+                    <p class='content__title__error'>{{ $errors->first('post.title') }}</p>
                 </div>
-                <div class='content_body'>
+                <div class='content__body'>
                     <h2>本文</h2>
                     <input type='text' name='post[body]'>
+                    <p class='content__body__error'>{{ $errors->first('post.body') }}</p>
                 </div>
                 <input type="submit">
             </form>

@@ -13,14 +13,14 @@
             Hello This is Laraposts;
         </h1>
         <div class="content">
-            <div>
+            <div class="content__header">
+                [<a href="{{ url('/posts/create') }}">投稿</a>]
+            </div>
+            <div class="conten__body">
             @foreach ($posts as $post)
               <h3>{{ $post->title }}</h3>
               <p>{{ $post->body }}</p>
             @endforeach
-        </div>
-        <div class="paginate">
-            {{ $posts->links() }}
         </div>
     </body>
 </html>

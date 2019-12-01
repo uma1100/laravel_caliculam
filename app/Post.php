@@ -13,16 +13,29 @@ class Post extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'bodycx'];
+    protected $fillable = ['title', 'body'];
 
     /**
-     * 投稿5件を取得する
+     * ペジネーションコレクションを取得する
      * 
      * @return Paginate posts
      */
-    public function getPaginate()
+    public function getPaginate(string $sort_key = 'updated_at', string $sort_order = 'DESC')
     {
-        return $this->paginate(self::PAGINATE_COUNT_GET_POSTS);
+        return $this
+            ->orderby($sort_key, $sort_order)
+            ->paginate(self::PAGINATE_COUNT_GET_POSTS);
+    }
+
+    /**
+     * IDから投稿を1つ取得する
+     * 
+     * @param int $id
+     * @return Post post
+     */
+    public function getById(int $id)
+    {
+        return $this->findOrFail($id);
     }
 
     /**
