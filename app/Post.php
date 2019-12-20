@@ -44,8 +44,8 @@ class Post extends Model
      * @param int $id
      * @return Post post
      */
-    public function getById(int $id)
-    {
-        return $this->findOrFail($id);
-    }
+    // public function getById(int $id)
+    // {
+    //     return $this->findOrFail($id);
+    // }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePost as CreatePostRequest;
+use Illuminate\Http\Request;
 use App\Post as PostModel;
 
 class PostController extends Controller
@@ -55,5 +56,27 @@ class PostController extends Controller
         $this->post_model->create($input_post);
 
         return redirect()->action('PostController@index');
+    }
+
+    public function destroy(int $id) {
+        $post = $this->post_model->findOrFail($id);
+        $post->delete();
+        return redirect()->action('PostController@index');
+    }
+
+    // getでmessages/id/editにアクセスされた場合の「更新画面表示処理」
+    public function edit($id)
+    {
+        return view('posts/edit')->with(['post' => $this->post_model->getById($id)]);
+    }
+    public function update(Request $request, $id)
+    {
+        $input_post = $request['post'];
+        $post = $this->post_model->findOrFail($id);
+        $post->title = $input_post['title'];
+        $post->body = $input_post['body'];
+        $post->save();
+
+        return redirect('/');
     }
 }
