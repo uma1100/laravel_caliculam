@@ -20,19 +20,21 @@
         <div class="content__header">
             [<a href="{{ url('/posts/create') }}">投稿</a>]
         </div>
-        <div class="conten__body">
+        <div class="content__body">
             @foreach ($posts as $post)
             <h3>{{ $post->title }}
             <form action="{{ action('PostController@destroy', $post->id) }}" id="form_{{ $post->id }}" method="post" style="display:inline">
                 {{ csrf_field() }}
                 {{ method_field('delete') }}
-                <a href="#" data-id="{{ $post->id }}" onclick="deletePost(this);" class="fs12">delete</a>
+                <!-- <a href="#" data-id="{{ $post->id }}" onclick="deletePost(this);" class="fs12">delete</a> -->
+                <button type="submit">delete</button>
             </form>
             </h3>
             <p>{{ $post->body }}
                 <a href="/posts/{{$post->id}}/edit">編集</a>
             </p>
             @endforeach
+            {{$posts->links('pagination::bootstrap-4')}}
         </div>
 <script>
     function deletePost(e) {
